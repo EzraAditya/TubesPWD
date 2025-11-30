@@ -1,29 +1,27 @@
 <?php
 session_start();
-include '../config/database.php';
+include 'connection.php';
 
-if (!isset($_SESSION['id_user'])) { header("Location: ../login.php"); exit; }
+if (!isset($_SESSION['id_user'])) { header("Location: ../views/login.php"); exit; }
 $id_user = $_SESSION['id_user'];
 
-// BOOKING
+// PROSES BOOKING
 if (isset($_POST['book_now'])) {
     $id_kamar = $_POST['id_kamar'];
     $check_in = $_POST['check_in'];
     $check_out = $_POST['check_out'];
     $tamu = $_POST['jumlah_tamu'];
 
-    // Hitung Durasi
+    // Hitung durasi
     $tgl1 = new DateTime($check_in);
     $tgl2 = new DateTime($check_out);
-    $diff = $tgl2->diff($tgl1);
-    $durasi = $diff->days;
+    $durasi = $tgl2->diff($tgl1)->days;
 
     if ($durasi < 1) {
-        echo "<script>alert('Minimal menginap 1 malam!'); window.history.back();</script>";
-        exit;
+        echo "<script>alert('Minimal 1 malam!'); window.history.back();</script>"; exit;
     }
 
-    // Ambil harga
+    // Ambil harga kamar
     $kamar = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga FROM kamar WHERE id_kamar='$id_kamar'"));
     $total = $kamar['harga'] * $durasi;
 
@@ -33,16 +31,15 @@ if (isset($_POST['book_now'])) {
     
     if (mysqli_query($conn, $sql1)) {
         $id_res = mysqli_insert_id($conn);
-        // Insert Rincian
         $sql2 = "INSERT INTO rincianreservasi (id_reservasi, id_kamar, jumlah_kamar, sub_total) 
                  VALUES ('$id_res', '$id_kamar', 1, '$total')";
         mysqli_query($conn, $sql2);
         
-        echo "<script>alert('Berhasil Booking!'); window.location='../riwayat.php';</script>";
+        echo "<script>alert('Booking Berhasil!'); window.location='../views/riwayat.php';</script>";
     }
 }
 
-// CANCEL / DELETE
+// PROSES BATAL / HAPUS
 if (isset($_GET['action'])) {
     $id = $_GET['id'];
     if ($_GET['action'] == 'cancel') {
@@ -50,6 +47,6 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == 'delete') {
         mysqli_query($conn, "DELETE FROM reservasi WHERE id_reservasi='$id'");
     }
-    header("Location: ../riwayat.php");
+    header("Location: ../views/riwayat.php");
 }
 ?>
