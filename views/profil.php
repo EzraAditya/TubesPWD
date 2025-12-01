@@ -17,12 +17,17 @@ if (isset($_POST['update'])) {
 $id = $_SESSION['id_user'];
 $d = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE id_user='$id'"));
 
+$pageStyles = '<link rel="stylesheet" href="/assets/css/profil.css">';
+
 include '../includes/header.php';
-include '../includes/navbar.php';
+
 ?>
 
-    <h2>Edit Profil</h2>
-    <form action="" method="post">
+<div class="container profile-container">
+    <h2 class="page-title">Edit Profil</h2>
+    <p class="page-sub">Perbarui data pribadi Anda agar tetap akurat.</p>
+
+    <form action="" method="post" class="profile-form">
         <label>Nama:</label>
         <input type="text" name="nama" value="<?php echo $d['nama']; ?>" required="required" />
         
@@ -35,7 +40,7 @@ include '../includes/navbar.php';
         <label>Tanggal Lahir:</label>
         <input type="date" name="tanggal_lahir" value="<?php echo $d['tanggal_lahir']; ?>" />
         
-        <button type="submit" name="update">Simpan Perubahan</button>
+        <button type="submit" name="update" class="btn-primary">Simpan Perubahan</button>
     </form>
-
+</div>
 <?php include '../includes/footer.php'; ?>

@@ -97,3 +97,130 @@ th {
     font-style: italic;
     margin-bottom: 10px;
 }
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* ========== GLOBAL SETTING ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+}
+
+/* ========== HEADER ========== */
+.header {
+    width: 100%;
+    padding: 15px 0;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.75);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-inner {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ========== LOGO ========== */
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 32px;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2b2b2b;
+}
+
+/* ========== NAVIGATION MENU ========== */
+.header-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.header-nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 8px 14px;
+    transition: 0.3s;
+    border-radius: 6px;
+}
+
+.header-nav a:hover {
+    background: #4c6ef5;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.logout {
+    background: #ff5c5c;
+    color: #fff !important;
+}
+
+.logout:hover {
+    background: #e53838;
+}
+
+/* ========== USER INFO ========== */
+.header-user {
+    font-size: 15px;
+    color: #444;
+    background: #e7f0ff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #d0e1ff;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .header-inner {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .header-nav {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* ===== MAIN CONTENT ===== */
+.content {
+    width: 90%;
+    margin: 30px auto;
+    min-height: 60vh;
+}
+
+/* ===== FOOTER ===== */
+.main-footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+}
