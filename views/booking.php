@@ -8,7 +8,7 @@ $k = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kamar WHERE id_kamar=
 include '../includes/header.php';
 include '../includes/navbar.php';
 ?>
-
+<div class="container">
     <h2>Booking: <?php echo $k['tipe_kamar']; ?></h2>
     <p>Harga: Rp <?php echo number_format($k['harga']); ?> /malam</p>
     
@@ -27,5 +27,5 @@ include '../includes/navbar.php';
         <button type="submit" name="book_now">Konfirmasi Pesanan</button>
     </form>
     <a href="dashboard.php">Batal</a>
-
+</div>
 <?php include '../includes/footer.php'; ?>
