@@ -177,12 +177,17 @@ body {
 }
 
 .logout {
-    background: #ff5c5c;
-    color: #fff !important;
+    background: #ff5858;
+    padding: 10px 25px;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    justify-content: flex-end;
 }
 
 .logout:hover {
-    background: #e53838;
+    background: #ff1515;
 }
 
 /* ========== USER INFO ========== */

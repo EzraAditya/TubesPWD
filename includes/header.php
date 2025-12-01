@@ -29,16 +29,9 @@ if (!isset($_SESSION)) { session_start(); }
         <!-- MENU -->
         <nav class="header-nav">
             <a href="dashboard.php">Home</a>
-            <a href="profil.php">Profil</a>
             <a href="riwayat.php">Riwayat</a>
-            <a href="logout.php" class="logout">Logout</a>
+            <a href="profil.php"><strong><?php echo $_SESSION['nama']; ?></strong></a>
         </nav>
-
-        <!-- USER -->
-        <div class="header-user">
-            Halo, <strong><?php echo $_SESSION['nama']; ?></strong>
-        </div>
-
     </div>
 </header>
 

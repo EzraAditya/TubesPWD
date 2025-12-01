@@ -1,5 +1,3 @@
-<?php include '../includes/header.php'; ?>
-
 <style>
     body {
         background: url('../assets/bg-hotel.jpg') center/cover no-repeat fixed;
