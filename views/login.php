@@ -10,6 +10,6 @@
         
         <button type="submit" name="login">Masuk</button>
     </form>
-    <p>Belum punya akun? <a href="registed.php">Daftar disini</a></p>
+    <p>Belum punya akun? <a href="register.php">Daftar disini</a></p>
 
 <?php include '../includes/footer.php'; ?>
