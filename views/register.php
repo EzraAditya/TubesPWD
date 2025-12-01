@@ -1,5 +1,5 @@
 <?php include '../includes/header.php'; ?>
-<div class="container">
+<div class="center-box">
     <h2>Registrasi</h2>
     <form action="../actions/connection.php" method="post">
         <label>Nama Lengkap:</label>

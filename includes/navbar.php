@@ -1,5 +1,5 @@
 <?php if(isset($_SESSION['id_user'])) { ?>
-    <div class="container.nav">
+    <div class="nav">
         <span>Halo, <strong><?php echo $_SESSION['nama']; ?></strong></span> |
         <a href="dashboard.php">Home</a> |
         <a href="profil.php">Profil</a> |

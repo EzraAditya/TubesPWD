@@ -127,16 +127,3 @@ tr:hover td {
     font-style: italic;
     margin-bottom: 10px;
 }
-
-/* Small Badge*/
-.status-badge {
-    padding: 5px 10px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: bold;
-    color: white;
-}
-
-.status-pending { background: #f0ad4e; }
-.status-success { background: #28a745; }
-.status-cancel  { background: #dc3545; }

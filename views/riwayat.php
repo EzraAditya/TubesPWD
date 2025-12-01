@@ -5,7 +5,7 @@ if (!isset($_SESSION['id_user'])) { header("Location: login.php"); exit; }
 include '../includes/header.php';
 include '../includes/navbar.php';
 ?>
-<div class="container">
+
     <h2>Riwayat Transaksi</h2>
     <table border="1">
         <thead>
@@ -27,7 +27,11 @@ include '../includes/navbar.php';
                 <td><?php echo $r['tipe_kamar']; ?></td>
                 <td><?php echo $r['check_in']; ?> s/d <?php echo $r['check_out']; ?></td>
                 <td>Rp <?php echo number_format($r['total_biaya']); ?></td>
-                <td><?php echo $r['status_reservasi']; ?></td>
+                <td><?php 
+                    echo $r['status_reservasi']; 
+                    $class = $st == 'Pending' ? 'status status-pending' : ($st == 'Selesai' ? 'status status-done' : 'status status-cancel');
+                    echo "<span class='$class'>$st</span>";
+                ?></td>
                 <td>
                     <?php if($r['status_reservasi'] == 'Pending') { ?>
                         <a href="../actions/reservation.php?action=cancel&amp;id=<?php echo $r['id_reservasi']; ?>" onclick="return confirm('Batalkan?')">Batalkan</a>
@@ -39,5 +43,5 @@ include '../includes/navbar.php';
             <?php } ?>
         </tbody>
     </table>
-</div>
+
 <?php include '../includes/footer.php'; ?>
