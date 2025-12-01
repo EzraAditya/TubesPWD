@@ -1,0 +1,63 @@
+.nice-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(15,23,42,0.06);
+}
+
+.nice-table thead th {
+  background: linear-gradient(90deg,#0b61d6,#094aa6);
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+}
+
+.nice-table tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #eef2f6;
+  background: #fff;
+  font-size: 14px;
+  color: #374151;
+}
+
+.nice-table tbody tr:hover td {
+  background: #f6f9ff;
+}
+
+/* Status Badges */
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.badge.pending { background:#f59e0b; }
+.badge.selesai { background:#10b981; }
+.badge.batal   { background:#ef4444; }
+
+/* Buttons di tabel */
+.action-btn {
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.action-btn.danger {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.action-btn.delete {
+  background: #fde047;
+  color: #92400e;
+}
+
+.action-btn:hover {
+  opacity: .8;
+}

@@ -4,10 +4,11 @@ include '../actions/connection.php';
 if (!isset($_SESSION['id_user'])) { header("Location: login.php"); exit; }
 
 include '../includes/header.php';
-include '../includes/navbar.php';
-?>
 
+?>
+<div class="container">
     <h3>Daftar Kamar</h3>
+    <div class ="kamar-grid">
     <table border="1">
         <thead>
             <tr><th>Kamar</th><th>Harga</th><th>Aksi</th></tr>
@@ -17,17 +18,22 @@ include '../includes/navbar.php';
             $q = mysqli_query($conn, "SELECT * FROM kamar");
             while($k = mysqli_fetch_assoc($q)){
             ?>
+            <div class="kamar-card">
             <tr>
                 <td><?php echo $k['tipe_kamar']; ?> (No. <?php echo $k['nomor_kamar']; ?>)</td>
                 <td>Rp <?php echo number_format($k['harga']); ?></td>
                 <td>
+                    <div style="display:flex;gap:8px;">
                     <a href="booking.php?id=<?php echo $k['id_kamar']; ?>">Booking</a> | 
                     <a href="../actions/wishlist.php?add=<?php echo $k['id_kamar']; ?>" style="color:green;">+ Wishlist</a>
+                    </div>
                 </td>
             </tr>
+            </div>
             <?php } ?>
         </tbody>
     </table>
+    </div>
 
     <br /><hr /><br />
 
@@ -50,5 +56,5 @@ include '../includes/navbar.php';
             <?php } ?>
         </tbody>
     </table>
-
+</div>
 <?php include '../includes/footer.php'; ?>
