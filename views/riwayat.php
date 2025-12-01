@@ -5,7 +5,7 @@ if (!isset($_SESSION['id_user'])) { header("Location: login.php"); exit; }
 include '../includes/header.php';
 include '../includes/navbar.php';
 ?>
-
+<div class="container">
     <h2>Riwayat Transaksi</h2>
     <table border="1">
         <thead>
@@ -39,5 +39,5 @@ include '../includes/navbar.php';
             <?php } ?>
         </tbody>
     </table>
-
+</div>
 <?php include '../includes/footer.php'; ?>

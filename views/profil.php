@@ -20,7 +20,7 @@ $d = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE id_user='$
 include '../includes/header.php';
 include '../includes/navbar.php';
 ?>
-
+<div class="container">
     <h2>Edit Profil</h2>
     <form action="" method="post">
         <label>Nama:</label>
@@ -37,5 +37,5 @@ include '../includes/navbar.php';
         
         <button type="submit" name="update">Simpan Perubahan</button>
     </form>
-
+</div>
 <?php include '../includes/footer.php'; ?>

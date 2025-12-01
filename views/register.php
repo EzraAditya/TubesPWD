@@ -1,5 +1,5 @@
 <?php include '../includes/header.php'; ?>
-
+<div class="container">
     <h2>Registrasi</h2>
     <form action="../actions/connection.php" method="post">
         <label>Nama Lengkap:</label>
@@ -20,5 +20,5 @@
         <button type="submit" name="register">Daftar</button>
     </form>
     <p>Sudah punya akun? <a href="login.php">Login disini</a></p>
-
+</div>
 <?php include '../includes/footer.php'; ?>
