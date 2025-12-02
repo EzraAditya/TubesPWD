@@ -28,13 +28,13 @@ if (!isset($_SESSION)) { session_start(); }
 
         <!-- MENU -->
         <nav class="header-nav">
-            <a href="dashboard.php">Home</a>
-            <a href="riwayat.php">Riwayat</a>
-            <a href="booking.php">Booking</a>
-            <a href="wishlist.php">Wishlist</a>
-            <a href="profil.php"><strong><?php echo $_SESSION['nama']; ?></strong></a>
+            <a href="dashboardBefore.php">Home</a>
+            <a href="login.php">Riwayat</a>
+            <a href="login.php">Booking</a>
+            <a href="login.php">Wishlist</a>
+            <a href="login.php"><button>Log In</button></a>
         </nav>
     </div>
 </header>
 
-<main class="content">
+<main class="content"></main>

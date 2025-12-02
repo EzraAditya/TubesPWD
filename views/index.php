@@ -1,4 +1,4 @@
 <?php
-header("Location: login.php");
+header("Location: dashboardBefore.php");
 exit;
 ?>

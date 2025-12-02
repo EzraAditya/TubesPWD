@@ -41,6 +41,13 @@
   cursor: not-allowed;
 }
 
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
 .btn-primary {
   background: #0b61d6;
   border: none;

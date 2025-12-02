@@ -2,11 +2,10 @@
 include '../actions/connection.php';
 if (!isset($_SESSION['id_user'])) { header("Location: login.php"); exit; }
 
-$id_kamar = $_GET['id'];
+$id_kamar = $_GET['id_kamar'];
 $k = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kamar WHERE id_kamar='$id_kamar'"));
 
 include '../includes/header.php';
-include '../includes/navbar.php';
 ?>
 
     <h2>Booking: <?php echo $k['tipe_kamar']; ?></h2>
@@ -26,6 +25,6 @@ include '../includes/navbar.php';
         
         <button type="submit" name="book_now">Konfirmasi Pesanan</button>
     </form>
-    <a href="dashboard.php">Batal</a>
+    <a href="dashboard.php" class="logout" style="logout">Batal</a>
 
 <?php include '../includes/footer.php'; ?>

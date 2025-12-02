@@ -17,6 +17,23 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.kamar-grid.katalog-kamar{
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    row-gap: 40px;
+}
+
+.card-kamae{
+    width: 260px;
+    background: #fff;
+    border: 2px solid #179900;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: 0.25s ease;
+}
+
 /* Headings */
 h2,
 h3 {
@@ -168,6 +185,7 @@ body {
     padding: 8px 14px;
     transition: 0.3s;
     border-radius: 6px;
+    align-content: ;
 }
 
 .header-nav a:hover {
@@ -176,13 +194,27 @@ body {
     transform: translateY(-2px);
 }
 
+.header-nav button{
+    text-decoration: none;
+    color: #a9a9a9;
+    font-size: 16px;
+    padding: 8px 14px;
+    transition: 0.3s;
+    border-radius: 6px;
+}
+
 .logout {
-    background: #ff5c5c;
-    color: #fff !important;
+    background: #ff5858;
+    padding: 10px 25px;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    justify-content: flex-end;
 }
 
 .logout:hover {
-    background: #e53838;
+    background: #ff1515;
 }
 
 /* ========== USER INFO ========== */

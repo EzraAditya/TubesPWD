@@ -1,11 +1,8 @@
 <?php
 // Panggil logic connection (session start ada di sana)
 include '../actions/connection.php';
-if (!isset($_SESSION['id_user'])) { header("Location: login.php"); exit; }
 
-
-
-include '../includes/header.php';
+include '../includes/headerBefore.php';
 
 ?>
 <div class="container">
