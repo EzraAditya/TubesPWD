@@ -152,8 +152,8 @@ body {
 .header {
     width: 100%;
     padding: 15px 0;
+    -webkit-backdrop-filter: blur(15px); 
     backdrop-filter: blur(15px);
-    background: rgba(255, 255, 255, 0.75);
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     position: sticky;
     top: 0;
@@ -358,14 +358,17 @@ body {
 }
 
 .gallery-scroll {
-    display: flex;          /* KUNCI: Membuat elemen berjejer ke samping */
-    gap: 15px;              /* Jarak antar foto */
-    overflow-x: auto;       /* Mengaktifkan scroll horizontal */
-    padding-bottom: 15px;   /* Ruang untuk scrollbar */
+    display: flex;    
+    gap: 15px;    
+    overflow-x: auto;    
+    padding-bottom: 15px;    
     scroll-behavior: smooth;
     
-    /* Mempercantik Scrollbar (Chrome/Safari) */
-    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+}
+
+.gallery-scroll::-webkit-scrollbar {
+    display: none;
 }
 
 /* Kotak Pembungkus Setiap Foto Kecil */
