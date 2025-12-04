@@ -30,11 +30,8 @@ if (!isset($_SESSION)) { session_start(); }
         <nav class="header-nav">
             <a href="dashboard.php">Home</a>
             <a href="riwayat.php">Riwayat</a>
-<<<<<<< HEAD
             <a href="booking.php">Booking</a>
             <a href="wishlist.php">Wishlist</a>
-=======
->>>>>>> a5954bddacddc889d12b2a9cf1b806f720e00a27
             <a href="profil.php"><strong><?php echo $_SESSION['nama']; ?></strong></a>
         </nav>
     </div>

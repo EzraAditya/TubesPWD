@@ -25,11 +25,6 @@ include '../includes/header.php';
         
         <button type="submit" name="book_now">Konfirmasi Pesanan</button>
     </form>
-<<<<<<< HEAD
-    <a href="dashboard.php" class="logout" style="logout">Batal</a>
-
-=======
     <a href="dashboard.php">Batal</a>
 </div>
->>>>>>> a5954bddacddc889d12b2a9cf1b806f720e00a27
 <?php include '../includes/footer.php'; ?>

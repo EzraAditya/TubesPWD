@@ -26,11 +26,7 @@ include '../includes/header.php';
 <div class="container profile-container">
     <h2 class="page-title">Edit Profil</h2>
 
-<<<<<<< HEAD
     <form action="" method="post" class="profile-form">
-=======
-    <form action="" method="post" class="profile-form3">
->>>>>>> a5954bddacddc889d12b2a9cf1b806f720e00a27
         <br>
         <label>Nama:</label>
         <input type="text" name="nama" value="<?php echo $d['nama']; ?>" required="required" />
