@@ -259,3 +259,93 @@ body {
     padding: 15px 0;
     margin-top: 40px;
 }
+
+/* ========== ROOM CARD & GRID (PERBAIKAN) ========== */
+
+/* Container Utama: Membuat layout kotak-kotak (Grid) */
+.room-grid {
+    display: grid;
+    /* Ini kuncinya: Membagi kolom otomatis dengan lebar minimal 300px */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; /* Jarak antar kotak */
+    margin-top: 20px;
+}
+
+/* Kotak Per Kamar (Card) */
+.room-card {
+    background: #fff;
+    border: 1px solid #e0e0e0; /* Garis pinggir kotak */
+    border-radius: 12px;       /* Sudut membulat */
+    overflow: hidden;          /* Agar gambar tidak keluar dari kotak */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;             /* Agar isi bisa ditata rapi */
+    flex-direction: column;    /* Susunan vertikal */
+}
+
+/* Efek saat mouse diarahkan ke kotak */
+.room-card:hover {
+    transform: translateY(-5px); /* Kotak naik sedikit */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Bayangan lebih tebal */
+    border-color: #2c7be5;
+}
+
+/* Pengaturan Gambar Agar Tidak Kegedean */
+.room-img {
+    width: 100%;        /* Lebar mengikuti kotak */
+    height: 220px;      /* TINGGI DIPAKSA TETAP (Agar seragam) */
+    object-fit: cover;  /* Gambar dipotong rapi agar tidak gepeng */
+    border-bottom: 1px solid #eee;
+}
+
+/* Area Teks di dalam Kotak */
+.room-content {
+    padding: 20px;
+    flex-grow: 1;      /* Mengisi sisa ruang */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Judul Kamar */
+.room-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Harga */
+.room-price {
+    font-size: 16px;
+    color: #2c7be5; /* Warna biru */
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Deskripsi Singkat */
+.room-desc-short {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Mendorong tombol ke bawah */
+}
+
+/* Tombol Detail */
+.btn-detail {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background: #fff;
+    border: 2px solid #2c7be5;
+    color: #2c7be5;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-detail:hover {
+    background: #2c7be5;
+    color: #fff;
+}
