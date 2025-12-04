@@ -24,8 +24,10 @@ include '../includes/header.php';
         <label>Jumlah Tamu:</label>
         <input type="number" name="jumlah_tamu" value="1" min="1" required="required" />
         
-        <button type="submit" name="book_now">Konfirmasi Pesanan</button>
+        <div style="display:flex; justify-content:space-between; margin-top:10px;">
+            <a href="home.php">Batal</a>
+            <button class="btn-primary">Konfirmasi Pesanan</button>
+        </div>
     </form>
-    <a href="dashboard.php">Batal</a>
 </div>
 <?php include '../includes/footer.php'; ?>
