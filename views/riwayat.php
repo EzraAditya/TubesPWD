@@ -1,51 +1,87 @@
 <?php
+session_start();
 include '../actions/connection.php';
-if (!isset($_SESSION['id_user'])) { header("Location: login.php"); exit; }
+if (!isset($_SESSION['id_user'])) { 
+    header("Location: login.php"); 
+    exit; 
+}
 
 $pageTitle = "Riwayat";
-$pageStyles = '<link rel="stylesheet" href="../assets/css/riwayat.css">';
-
 include '../includes/header.php';
 
+$id = $_SESSION['id_user'];
+$q = "SELECT r.*, k.tipe_kamar FROM reservasi r 
+      JOIN rincianreservasi rr ON r.id_reservasi = rr.id_reservasi 
+      JOIN kamar k ON rr.id_kamar = k.id_kamar 
+      WHERE r.id_user='$id' ORDER BY r.id_reservasi DESC";
+$res = mysqli_query($conn, $q);
 ?>
 
 <div class="container">
     <h2>Riwayat Transaksi</h2>
-    <table border="1">
+    
+    <?php if (mysqli_num_rows($res) > 0): ?>
+    <table border="1" style="width:100%; border-collapse:collapse;">
         <thead>
-            <tr><th>ID</th><th>Kamar</th><th>Tgl Check In/Out</th><th>Total</th><th>Status</th><th>Aksi</th></tr>
+            <tr style="background:#f2f2f2;">
+                <th style="padding:10px;">ID</th>
+                <th style="padding:10px;">Kamar</th>
+                <th style="padding:10px;">Check In/Out</th>
+                <th style="padding:10px;">Total</th>
+                <th style="padding:10px;">Status</th>
+                <th style="padding:10px;">Aksi</th>
+            </tr>
         </thead>
         <tbody>
-            <?php
-            $id = $_SESSION['id_user'];
-            $q = "SELECT r.*, k.tipe_kamar FROM reservasi r 
-                  JOIN rincianreservasi rr ON r.id_reservasi = rr.id_reservasi 
-                  JOIN kamar k ON rr.id_kamar = k.id_kamar 
-                  WHERE r.id_user='$id' ORDER BY r.id_reservasi DESC";
-            $res = mysqli_query($conn, $q);
-            
-            while($r = mysqli_fetch_assoc($res)) {
+            <?php while($r = mysqli_fetch_assoc($res)): 
+                $status = $r['status_reservasi'];
+                $status_color = '';
+                
+                if ($status == 'Pending') $status_color = 'orange';
+                elseif ($status == 'Confirmed') $status_color = 'blue';
+                elseif ($status == 'Selesai') $status_color = 'green';
+                elseif ($status == 'Canceled') $status_color = 'red';
             ?>
             <tr>
-                <td>#<?php echo $r['id_reservasi']; ?></td>
-                <td><?php echo $r['tipe_kamar']; ?></td>
-                <td><?php echo $r['check_in']; ?> s/d <?php echo $r['check_out']; ?></td>
-                <td>Rp <?php echo number_format($r['total_biaya']); ?></td>
-                <td><?php 
-                    echo $r['status_reservasi']; 
-                    $class = $st == 'Pending' ? 'status status-pending' : ($st == 'Selesai' ? 'status status-done' : 'status status-cancel');
-                    echo "<span class='$class'>$st</span>";
-                ?></td>
-                <td>
-                    <?php if($r['status_reservasi'] == 'Pending') { ?>
-                        <a href="../actions/reservation.php?action=cancel&amp;id=<?php echo $r['id_reservasi']; ?>" onclick="return confirm('Batalkan?')">Batalkan</a>
-                    <?php } else { ?>
-                        <a href="../actions/reservation.php?action=delete&amp;id=<?php echo $r['id_reservasi']; ?>" onclick="return confirm('Hapus?')" style="color:red;">Hapus</a>
-                    <?php } ?>
+                <td style="padding:10px;">#<?php echo $r['id_reservasi']; ?></td>
+                <td style="padding:10px;"><?php echo $r['tipe_kamar']; ?></td>
+                <td style="padding:10px;">
+                    <?php echo date('d/m/Y', strtotime($r['check_in'])); ?><br>
+                    s/d<br>
+                    <?php echo date('d/m/Y', strtotime($r['check_out'])); ?>
+                </td>
+                <td style="padding:10px;">Rp <?php echo number_format($r['total_biaya']); ?></td>
+                <td style="padding:10px;">
+                    <span style="color:<?php echo $status_color; ?>; font-weight:bold;">
+                        <?php echo $status; ?>
+                    </span>
+                </td>
+                <td style="padding:10px;">
+                    <?php if($status == 'Pending'): ?>
+                        <a href="../actions/reservation.php?action=cancel&id=<?php echo $r['id_reservasi']; ?>" 
+                           onclick="return confirm('Batalkan?')" 
+                           style="color:red; text-decoration:none;">
+                            Batalkan
+                        </a>
+                    <?php elseif(in_array($status, ['Selesai', 'Canceled'])): ?>
+                        <a href="../actions/reservation.php?action=delete&id=<?php echo $r['id_reservasi']; ?>" 
+                           onclick="return confirm('Hapus?')" 
+                           style="color:#666; text-decoration:none;">
+                            Hapus
+                        </a>
+                    <?php endif; ?>
                 </td>
             </tr>
-            <?php } ?>
+            <?php endwhile; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <p style="text-align:center; padding:20px; background:#f9f9f9;">
+        Tidak ada riwayat transaksi.
+        <br>
+        <a href="daftar_kamar.php" style="color:blue;">Booking kamar sekarang</a>
+    </p>
+    <?php endif; ?>
 </div>
+
 <?php include '../includes/footer.php'; ?>
