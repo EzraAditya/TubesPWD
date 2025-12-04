@@ -41,7 +41,7 @@ include '../includes/header.php';
         <input type="date" name="tanggal_lahir" value="<?php echo $d['tanggal_lahir']; ?>" />
         
         <button type="submit" name="update" class="btn-primary">Simpan Perubahan</button>
-        <a href="index.php" class="logout">Logout</a>
+        <a href="../actions/connection.php?logout=true" class="logout">Logout</a>
     </form>
 </div>
 <?php include '../includes/footer.php'; ?>

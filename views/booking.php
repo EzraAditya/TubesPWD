@@ -6,7 +6,7 @@ $id_kamar = $_GET['id'];
 $k = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kamar WHERE id_kamar='$id_kamar'"));
 
 include '../includes/header.php';
-include '../includes/navbar.php';
+
 ?>
 <div class="container">
     <h2>Booking: <?php echo $k['tipe_kamar']; ?></h2>
