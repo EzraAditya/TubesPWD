@@ -25,7 +25,7 @@ include '../includes/header.php';
         <input type="number" name="jumlah_tamu" value="1" min="1" required="required" />
         
         <div style="display:flex; justify-content:space-between; margin-top:10px;">
-            <a href="home.php">Batal</a>
+            <a href="dashboard.php">Batal</a>
             <button class="btn-primary">Konfirmasi Pesanan</button>
         </div>
     </form>
