@@ -39,6 +39,48 @@ if (isset($_POST['book_now'])) {
     }
 }
 
+//PROSES UPDATE
+if (isset($_POST['update_booking'])) {
+
+    $id_res    = $_POST['id_reservasi'];
+    $check_in  = $_POST['check_in'];
+    $check_out = $_POST['check_out'];
+    $tamu      = $_POST['jumlah_tamu'];
+
+    $tgl1 = new DateTime($check_in);
+    $tgl2 = new DateTime($check_out);
+    $durasi = $tgl2->diff($tgl1)->days;
+
+    if ($durasi < 1) {
+        echo "<script>alert('Minimal 1 malam!'); window.history.back();</script>";
+        exit;
+    }
+
+    // Ambil kamar & harga
+    $q = mysqli_query($conn, "
+        SELECT r.id_kamar, k.harga 
+        FROM rincianreservasi r
+        JOIN kamar k ON r.id_kamar = k.id_kamar
+        WHERE r.id_reservasi='$id_res'
+    ");
+    $data = mysqli_fetch_assoc($q);
+
+    $total = $data['harga'] * $durasi;
+
+    mysqli_query($conn, "UPDATE reservasi SET
+        check_in='$check_in',
+        check_out='$check_out',
+        jumlah_tamu='$tamu',
+        total_biaya='$total'
+        WHERE id_reservasi='$id_res' AND id_user='$id_user'
+    ");
+
+    mysqli_query($conn, "UPDATE rincianreservasi SET
+        sub_total='$total'
+        WHERE id_reservasi='$id_res'
+    ");
+}
+
 // PROSES BATAL / HAPUS
 if (isset($_GET['action'])) {
     $id = $_GET['id'];
