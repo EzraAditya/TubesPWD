@@ -1,5 +1,7 @@
 <?php
 include '../actions/connection.php';
+include '../actions/reservation.php';
+
 if (!isset($_SESSION['id_user'])) { header("Location: login.php"); exit; }
 
 $id_kamar = $_GET['id'];
@@ -26,7 +28,7 @@ include '../includes/header.php';
         
         <div style="display:flex; justify-content:space-between; margin-top:10px;">
             <a href="dashboard.php">Batal</a>
-            <button class="btn-primary">Konfirmasi Pesanan</button>
+            <button class="btn-primary" type="submit" name="book_now">Konfirmasi Pesanan</button>
         </div>
     </form>
 </div>
