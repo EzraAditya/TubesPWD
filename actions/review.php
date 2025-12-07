@@ -13,16 +13,15 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 // ================= TAMBAH REVIEW =================
 if ($action == 'tambah') {
 
-    $user_id       = $_POST['user_id'];
-    $penginapan_id = $_POST['penginapan_id'];
-    $rating        = $_POST['rating'];
-    $komentar      = $_POST['komentar'];
-    $tanggal       = date('Y-m-d H:i:s');
+    $id_user = $_SESSION['id_user'];
+    $id_kamar = $_POST['id_kamar'];
+    $rating = $_POST['rating'];
+    $komentar = $_POST['komentar'];
 
     $query = "INSERT INTO review
-              (user_id, penginapan_id, rating, komentar, tanggal)
+              (id_user, id_kamar, rating, komentar)
               VALUES
-              ('$user_id', '$penginapan_id', '$rating', '$komentar', '$tanggal')";
+              ('$id_user', '$id_kamar', '$rating', '$komentar')";
 
     echo mysqli_query($conn, $query)
         ? "Review berhasil ditambahkan"
@@ -32,13 +31,12 @@ if ($action == 'tambah') {
 // ================= TAMPIL REVIEW =================
 elseif ($action == 'tampil') {
 
-    $penginapan_id = $_GET['penginapan_id'];
+    $penginapan_id = $_GET['id_kamar'];
 
     $query = "SELECT r.*, u.nama
               FROM review r
-              JOIN user u ON r.user_id = u.id
-              WHERE r.penginapan_id = '$penginapan_id'
-              ORDER BY r.tanggal DESC";
+              JOIN user u ON r.id_user = u.id
+              WHERE r.id_kamar = '$id_kamar'";
 
     $result = mysqli_query($conn, $query);
     $data = [];
@@ -53,13 +51,13 @@ elseif ($action == 'tampil') {
 // ================= EDIT REVIEW =================
 elseif ($action == 'edit') {
 
-    $review_id = $_POST['review_id'];
+    $id_review = $_POST['id_review'];
     $rating    = $_POST['rating'];
     $komentar  = $_POST['komentar'];
 
     $query = "UPDATE review 
               SET rating='$rating', komentar='$komentar'
-              WHERE id='$review_id'";
+              WHERE id='$id_review'";
 
     echo mysqli_query($conn, $query)
         ? "Review berhasil diupdate"
@@ -69,9 +67,9 @@ elseif ($action == 'edit') {
 // ================= HAPUS REVIEW =================
 elseif ($action == 'hapus') {
 
-    $review_id = $_POST['review_id'];
+    $id_review = $_POST['id_review'];
 
-    $query = "DELETE FROM review WHERE id='$review_id'";
+    $query = "DELETE FROM review WHERE id='$id_review'";
 
     echo mysqli_query($conn, $query)
         ? "Review berhasil dihapus"
@@ -81,11 +79,11 @@ elseif ($action == 'hapus') {
 // ================= RATA-RATA RATING =================
 elseif ($action == 'rating') {
 
-    $penginapan_id = $_GET['penginapan_id'];
+    $id_kamar = $_GET['id_kamar'];
 
     $query = "SELECT AVG(rating) AS rata_rating 
               FROM review 
-              WHERE penginapan_id = '$penginapan_id'";
+              WHERE id_kamar = '$id_kamar'";
 
     $result = mysqli_query($conn, $query);
     $data = mysqli_fetch_assoc($result);
