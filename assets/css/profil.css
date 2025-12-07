@@ -63,3 +63,20 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(11,97,214,0.18);
 }
+
+.btn-danger {
+  background: #dc3545;  /* merah */
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .15s;
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(220,53,69,0.25);
+  background: #bb2d3b;
+}

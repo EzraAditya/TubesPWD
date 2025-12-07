@@ -42,6 +42,33 @@ include '../includes/header.php';
         
         <button type="submit" name="update" class="btn-primary">Simpan Perubahan</button>
         <a href="../actions/connection.php?logout=true" class="logout">Logout</a>
+        <button type="button" class="btn-danger" onclick="hapusAkun()">Hapus Akun</button>
+
     </form>
 </div>
+<script>
+function hapusAkun() {
+    if (!confirm("Yakin ingin menghapus akun Anda? Semua data akan hilang!")) return;
+
+    fetch("../actions/backend_user/user/delete_user.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            id_user: <?php echo $_SESSION['id_user']; ?>
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+
+        if (data.status) {
+            window.location = "register.php"; // redirect setelah sukses hapus
+        }
+    })
+    .catch(err => {
+        alert("Terjadi kesalahan pada server");
+    });
+}
+</script>
+
 <?php include '../includes/footer.php'; ?>
