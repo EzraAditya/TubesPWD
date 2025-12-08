@@ -172,7 +172,13 @@ body {
 .header-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 7px;
+}
+
+.logo-icon img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
 }
 
 .logo-icon {
