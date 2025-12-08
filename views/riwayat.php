@@ -37,10 +37,20 @@ $res = mysqli_query($conn, $q);
                 $status = $r['status_reservasi'];
                 $status_color = '';
                 
-                if ($status == 'Pending') $status_color = 'orange';
-                elseif ($status == 'Confirmed') $status_color = 'blue';
-                elseif ($status == 'Selesai') $status_color = 'green';
-                elseif ($status == 'Canceled') $status_color = 'red';
+                // --- LOGIKA STATUS & WARNA ---
+                if ($status == 'Pending') {
+                    $status_color = 'orange';
+                } elseif ($status == 'Confirmed') {
+                    $status_color = 'blue';
+                } elseif ($status == 'Selesai') {
+                    $status_color = 'green';
+                } elseif ($status == 'Canceled') {
+                    $status_color = 'red';
+                }
+                
+                // Logika untuk menentukan apakah transaksi sudah Selesai (cocok untuk review)
+                $is_finished = ($status == 'Selesai');
+                
             ?>
             <tr>
                 <td style="padding:10px;">#<?php echo $r['id_reservasi']; ?></td>
@@ -58,17 +68,35 @@ $res = mysqli_query($conn, $q);
                 </td>
                 <td style="padding:10px;">
                     <?php if($status == 'Pending'): ?>
+                        <a href="pembayaran.php?id=<?php echo $r['id_reservasi']; ?>" 
+                            style="display:inline-block; background-color:#28a745; color:white; padding:5px 10px; border-radius:4px; text-decoration:none; font-size:12px; margin-bottom:5px;">
+                            Bayar Sekarang
+                        </a>
+                        <br>
                         <a href="../actions/reservation.php?action=cancel&id=<?php echo $r['id_reservasi']; ?>" 
-                           onclick="return confirm('Batalkan?')" 
-                           style="color:red; text-decoration:none;">
+                            onclick="return confirm('Batalkan?')" 
+                            style="color:red; text-decoration:none;">
                             Batalkan
                         </a>
-                    <?php elseif(in_array($status, ['Selesai', 'Canceled'])): ?>
-                        <a href="../actions/reservation.php?action=delete&id=<?php echo $r['id_reservasi']; ?>" 
-                           onclick="return confirm('Hapus?')" 
-                           style="color:#666; text-decoration:none;">
-                            Hapus
+                        
+                    <?php elseif($is_finished): ?>
+                        <a href="ulasan.php?id=<?php echo $r['id_reservasi']; ?>" 
+                        style="display:inline-block; background-color:#007bff; color:white; padding:5px 10px; border-radius:4px; text-decoration:none; font-size:12px; margin-bottom:5px;">
+                        Beri Ulasan ⭐
                         </a>
+                        <br>
+                        <a href="../actions/reservation.php?action=delete&id=<?php echo $r['id_reservasi']; ?>" 
+                            onclick="return confirm('Hapus?')" 
+                            style="color:#666; text-decoration:none; font-size:12px;">
+                            Hapus Riwayat
+                        </a>
+
+                    <?php elseif(in_array($status, ['Confirmed', 'Canceled'])): ?>
+                        <a href="riview.php?id=<?php echo $r['id_reservasi']; ?>" 
+                            style="display:inline-block; background-color:#28a745; color:white; padding:5px 10px; border-radius:4px; text-decoration:none; font-size:12px; margin-bottom:5px;">
+                            Riview
+                        </a>
+                        
                     <?php endif; ?>
                 </td>
             </tr>
