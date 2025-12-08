@@ -68,6 +68,10 @@ $res = mysqli_query($conn, $q);
                 </td>
                 <td style="padding:10px;">
                     <?php if($status == 'Pending'): ?>
+                        <a href="edit_booking.php?id=<?php echo $r['id_reservasi']; ?>"
+                            style="display:inline-block; background-color:#2c7be5; color:white; padding:5px 10px; border-radius:4px; text-decoration:none; font-size:12px; margin-bottom:5px;">
+                        Edit Reservasi</a>
+                        <br>
                         <a href="pembayaran.php?id=<?php echo $r['id_reservasi']; ?>" 
                             style="display:inline-block; background-color:#28a745; color:white; padding:5px 10px; border-radius:4px; text-decoration:none; font-size:12px; margin-bottom:5px;">
                             Bayar Sekarang

@@ -50,6 +50,8 @@ if (isset($_POST['update_booking'])) {
     $tgl2 = new DateTime($check_out);
     $durasi = $tgl2->diff($tgl1)->days;
 
+    header("Location: ../views/riwayat.php?pesan=update_sukses");
+
     if ($durasi < 1) {
         echo "<script>alert('Minimal 1 malam!'); window.history.back();</script>";
         exit;
