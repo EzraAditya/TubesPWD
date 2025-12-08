@@ -22,7 +22,7 @@ if (!isset($_SESSION)) { session_start(); }
 
         <!-- LOGO -->
         <div class="header-logo">
-            <span class="logo-icon"><img src="../image/logo.png"></span>
+            <span class="logo-icon"><img src="../assets/image/logo.png" alt="Logo"></span>
             <span class="logo-text">Penginapan</span>
         </div>
 

@@ -96,9 +96,9 @@ $res = mysqli_query($conn, $q);
                         </a>
 
                     <?php elseif(in_array($status, ['Confirmed', 'Canceled'])): ?>
-                        <a href="riview.php?id=<?php echo $r['id_reservasi']; ?>" 
+                        <a href="review.php?id=<?php echo $r['id_reservasi']; ?>" 
                             style="display:inline-block; background-color:#28a745; color:white; padding:5px 10px; border-radius:4px; text-decoration:none; font-size:12px; margin-bottom:5px;">
-                            Riview
+                            Review
                         </a>
                         
                     <?php endif; ?>

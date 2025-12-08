@@ -19,6 +19,13 @@ $d = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE id_user='$
 
 $pageStyles = '<link rel="stylesheet" href="/assets/css/profil.css">';
 
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
+
 include '../includes/header.php';
 
 ?>
@@ -41,7 +48,7 @@ include '../includes/header.php';
         <input type="date" name="tanggal_lahir" value="<?php echo $d['tanggal_lahir']; ?>" />
         
         <button type="submit" name="update" class="btn-primary">Simpan Perubahan</button>
-        <a href="../actions/connection.php?logout=true" class="logout">Logout</a>
+        <button type="submit" name="logout" class="btn-danger" onclick="return confirm('Yakin ingin logout?')">Logout</button>
         <button type="button" class="btn-danger" onclick="hapusAkun()">Hapus Akun</button>
 
     </form>

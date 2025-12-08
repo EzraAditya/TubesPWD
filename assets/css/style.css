@@ -175,8 +175,16 @@ body {
     gap: 10px;
 }
 
-.logo-icon {
-    font-size: 32px;
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
 }
 
 .logo-text {
@@ -204,20 +212,6 @@ body {
     background: #4c6ef5;
     color: #fff;
     transform: translateY(-2px);
-}
-
-.logout {
-    background: #ff5858;
-    padding: 10px 25px;
-    color: white;
-    border-radius: 6px;
-    text-decoration: none;
-    display: inline-block;
-    justify-content: flex-end;
-}
-
-.logout:hover {
-    background: #ff1515;
 }
 
 /* ========== USER INFO ========== */
