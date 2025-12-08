@@ -49,7 +49,7 @@ include '../includes/header.php';
                 <td>No. <?php echo $w['nomor_kamar']; ?></td>
                 <td>Rp <?php echo number_format($w['harga']); ?></td>
                 <td>
-                    <a href="../actions/wishlist.php?delete=<?php echo $w['id_wishlist']; ?>" onclick="return confirm('Hapus?')" style="color:red;">Hapus</a>
+                    <a href="../actions/wishlist.php?delete=<?php echo $w['id_wishlist']; ?>" onclick="return confirm('Hapus kamar No. <?php echo $w['nomor_kamar']?> dari wishlist?')" style="color:red;">Hapus</a>
                 </td>
             </tr>
             <?php } ?>
