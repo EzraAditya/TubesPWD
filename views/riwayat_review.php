@@ -59,14 +59,13 @@ $result = mysqli_query($conn, $query);
                         <td><?php echo htmlspecialchars($row['komentar']); ?></td>
                         <td>
                             <a href="edit_review.php?id=<?php echo $row['id_review']; ?>" 
-                               class="btn btn-sm btn-warning w-100 mb-1">
-                               <i class="fas fa-edit"></i> Edit
+                               class="btn btn-sm btn-warning w-100 mb-1">Edit
                             </a>
-                            
+                            <br>
                             <a href="../actions/review.php?action=hapus&id=<?php echo $row['id_review']; ?>" 
-                               class="btn btn-sm btn-danger w-100"
-                               onclick="return confirm('Yakin ingin menghapus ulasan ini?');">
-                               <i class="fas fa-trash"></i> Hapus
+                               class="btn btn-sm btn-danger"
+                               style="color:red"
+                               onclick="return confirm('Yakin ingin menghapus ulasan ini?');">Hapus
                             </a>
                         </td>
                     </tr>
