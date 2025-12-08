@@ -31,7 +31,7 @@ if (!isset($_SESSION)) { session_start(); }
             <a href="dashboard.php">Home</a>
             <a href="riwayat.php">Riwayat</a>
             <a href="daftar_kamar.php">Daftar Kamar</a>
-            <a href="review.php">Ulasan</a>  
+            <a href="riwayat_review.php">Riwayat Ulasan</a>  
             <a href="profil.php"><strong>Halo, <?php echo $_SESSION['nama']; ?></strong></a>
         </nav>
     </div>
