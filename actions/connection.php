@@ -17,14 +17,61 @@ if (!$conn) {
 
 // --- LOGIKA REGISTER ---
 if (isset($_POST['register'])) {
-    $nama = $_POST['nama'];
-    $email = $_POST['email'];
-    $no_telp = $_POST['no_telp'];
-    $tgl = $_POST['tanggal_lahir'];
-    $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO user (nama, email, no_telp, tanggal_lahir, password) VALUES ('$nama', '$email', '$no_telp', '$tgl', '$pass')";
-    
+    $nama = trim($_POST['nama']);
+    $email = trim($_POST['email']);
+    $no_telp = trim($_POST['no_telp']);
+    $tgl = trim($_POST['tanggal_lahir']);
+    $password = trim($_POST['password']);
+
+    // =========================
+    // VALIDASI FIELD
+    // =========================
+
+    if (empty($nama) || empty($email) || empty($no_telp) || empty($tgl) || empty($password)) {
+        echo "<script>alert('Semua field wajib diisi!'); window.history.back();</script>";
+        exit;
+    }
+
+    if (!str_contains($email, "@")) {
+        echo "<script>alert('Email harus mengandung @'); window.history.back();</script>";
+        exit;
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "<script>alert('Format email tidak valid!'); window.history.back();</script>";
+        exit;
+    }
+
+    if (!preg_match('/^[0-9]+$/', $no_telp)) {
+        echo "<script>alert('Nomor telepon harus angka!'); window.history.back();</script>";
+        exit;
+    }
+
+    if (strlen($no_telp) < 8) {
+        echo "<script>alert('Nomor telepon terlalu pendek!'); window.history.back();</script>";
+        exit;
+    }
+
+    if (strlen($password) < 6) {
+        echo "<script>alert('Password minimal 6 karakter!'); window.history.back();</script>";
+        exit;
+    }
+
+    // CEK EMAIL SUDAH TERDAFTAR
+    $check = mysqli_query($conn, "SELECT email FROM user WHERE email = '$email'");
+    if (mysqli_num_rows($check) > 0) {
+        echo "<script>alert('Email sudah digunakan!'); window.history.back();</script>";
+        exit;
+    }
+
+    // HASH PASSWORD
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+
+    // SIMPAN KE DATABASE
+    $sql = "INSERT INTO user (nama, email, no_telp, tanggal_lahir, password)
+            VALUES ('$nama', '$email', '$no_telp', '$tgl', '$hash')";
+
     if (mysqli_query($conn, $sql)) {
         echo "<script>alert('Registrasi Berhasil!'); window.location='../views/login.php';</script>";
     } else {
@@ -32,24 +79,61 @@ if (isset($_POST['register'])) {
     }
 }
 
+
 // --- LOGIKA LOGIN ---
 if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $pass = $_POST['password'];
 
-    $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
-    
-    if (mysqli_num_rows($result) === 1) {
-        $row = mysqli_fetch_assoc($result);
-        if (password_verify($pass, $row['password'])) {
-            $_SESSION['id_user'] = $row['id_user'];
-            $_SESSION['nama'] = $row['nama'];
-            header("Location: ../views/dashboard.php");
-            exit;
-        }
+    $email = trim($_POST['email']);
+    $pass  = trim($_POST['password']);
+
+    // =========================
+    // VALIDASI FIELD
+    // =========================
+    if (empty($email) || empty($pass)) {
+        echo "<script>alert('Email dan password wajib diisi!'); window.history.back();</script>";
+        exit;
     }
-    echo "<script>alert('Email atau Password Salah!'); window.location='../views/login.php';</script>";
+
+    if (!str_contains($email, "@")) {
+        echo "<script>alert('Email harus mengandung @'); window.history.back();</script>";
+        exit;
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "<script>alert('Format email tidak valid!'); window.history.back();</script>";
+        exit;
+    }
+
+    // =========================
+    // CEK EMAIL DI DATABASE
+    // =========================
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
+
+    if (mysqli_num_rows($result) !== 1) {
+        echo "<script>alert('Email tidak ditemukan!'); window.history.back();</script>";
+        exit;
+    }
+
+    $row = mysqli_fetch_assoc($result);
+
+    // =========================
+    // CEK PASSWORD
+    // =========================
+    if (!password_verify($pass, $row['password'])) {
+        echo "<script>alert('Password salah!'); window.history.back();</script>";
+        exit;
+    }
+
+    // =========================
+    // LOGIN BERHASIL
+    // =========================
+    $_SESSION['id_user'] = $row['id_user'];
+    $_SESSION['nama'] = $row['nama'];
+
+    echo "<script>alert('Login Berhasil!'); window.location='../views/dashboard.php';</script>";
+    exit;
 }
+
 
 // --- LOGIKA LOGOUT ---
 if (isset($_GET['logout'])) {
