@@ -13,11 +13,10 @@ if (!isset($_GET['id'])) {
 }
 
 $id_reservasi = $_GET['id'];
-$id_user = $_SESSION['id_user']; // id_user dari sesi
-$id_kamar = null; // Akan diambil dari reservasi
+$id_user = $_SESSION['id_user']; 
+$id_kamar = null; 
 
 // 2. Ambil data reservasi dan ID KAMAR
-// Hanya reservasi yang 'Selesai' dan milik user yang bisa diulas
 $query_reservasi = "SELECT r.*, rr.id_kamar, k.tipe_kamar 
           FROM reservasi r 
           JOIN rincianreservasi rr ON r.id_reservasi = rr.id_reservasi 
@@ -34,10 +33,9 @@ if (!$data_reservasi) {
     exit;
 }
 
-$id_kamar = $data_reservasi['id_kamar']; // Ambil ID Kamar yang direservasi
+$id_kamar = $data_reservasi['id_kamar'];
 
 // 3. Cek apakah sudah pernah di-review berdasarkan id_user dan id_kamar
-// Karena tabel 'review' tidak punya id_reservasi, kita cek kombinasi user/kamar
 $check_review = mysqli_query($conn, "SELECT id_review FROM review WHERE id_user = '$id_user' AND id_kamar = '$id_kamar'");
 if (mysqli_num_rows($check_review) > 0) {
     echo "<script>alert('Anda sudah pernah memberikan review untuk kamar ini.'); window.location='riwayat.php';</script>";
@@ -49,17 +47,13 @@ if (mysqli_num_rows($check_review) > 0) {
 if (isset($_POST['submit_review'])) {
     $rating = mysqli_real_escape_string($conn, $_POST['rating']);
     $komentar = mysqli_real_escape_string($conn, $_POST['komentar']);
-    
-    // Pastikan rating valid (1-5)
+
     if ($rating >= 1 && $rating <= 5) {
         
-        // --- INSERT KE TABEL 'review' ---
-        // Menggunakan id_user dan id_kamar sesuai struktur tabel Anda
         $insert_review = "INSERT INTO review (id_user, id_kamar, rating, komentar) 
                           VALUES ('$id_user', '$id_kamar', '$rating', '$komentar')";
         
         if (mysqli_query($conn, $insert_review)) {
-            // OPTIONAL: Anda bisa update kolom di reservasi/rincianreservasi agar tidak bisa di-review lagi
             
             echo "<script>alert('Terima kasih, review berhasil disimpan!'); window.location='riwayat.php';</script>";
         } else {

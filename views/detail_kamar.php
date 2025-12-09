@@ -14,14 +14,10 @@ $k = mysqli_fetch_assoc($query);
 if (!$k) { echo "<script>alert('Kamar tidak ditemukan!'); window.location='daftar_kamar.php';</script>"; exit; }
 
 // 3. LOGIKA CARI GAMBAR OTOMATIS (GLOB)
-// Ambil nama kamar, misal: "Single Bed" -> jadi "single bed"
 $keyword = strtolower($k['tipe_kamar']); 
 
-// Cari file di folder assets/image yang diawali nama kamar tersebut
-// Contoh: "single bed.jpeg", "single bed3.jpeg", "single bed kamar mandi.jpeg"
 $daftar_gambar = glob("../assets/image/" . $keyword . "*.jpeg");
 
-// Gambar utama ambil yang pertama, kalau kosong pakai placeholder
 $gambar_header = (count($daftar_gambar) > 0) ? $daftar_gambar[0] : "https://via.placeholder.com/800x400?text=No+Image";
 
 include '../includes/header.php';
@@ -30,7 +26,7 @@ include '../includes/header.php';
 <style>
     .detail-header-img { 
         width: 100%; 
-        height: 450px; /* Tinggi gambar utama */
+        height: 450px; 
         object-fit: cover; 
         border-radius: 12px; 
         margin-bottom: 25px; 
@@ -111,7 +107,6 @@ include '../includes/header.php';
 
 <script>
     function gantiGambar(urlGambar) {
-        // Efek fade out sedikit
         var img = document.getElementById('mainImage');
         img.style.opacity = 0.5;
         

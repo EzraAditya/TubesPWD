@@ -12,7 +12,6 @@ include '../includes/header.php';
 
 $id_user = $_SESSION['id_user'];
 
-// Query mengambil data review + nama tipe kamar
 $query = "SELECT r.*, k.tipe_kamar 
           FROM review r 
           JOIN kamar k ON r.id_kamar = k.id_kamar 

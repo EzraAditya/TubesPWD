@@ -48,7 +48,6 @@ $res = mysqli_query($conn, $q);
                     $status_color = 'red';
                 }
                 
-                // Logika untuk menentukan apakah transaksi sudah Selesai (cocok untuk review)
                 $is_finished = ($status == 'Selesai');
                 
             ?>

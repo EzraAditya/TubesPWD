@@ -27,8 +27,6 @@ if (isset($_POST['update'])) {
 $id = $_SESSION['id_user'];
 $d = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE id_user='$id'"));
 
-// --- PANGGIL CSS KHUSUS PROFIL ---
-// Perhatikan titik dua (..) agar naik ke folder assets
 $pageStyles = '<link rel="stylesheet" href="../assets/css/profil.css">';
 
 if (isset($_POST['logout'])) {

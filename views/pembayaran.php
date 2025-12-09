@@ -27,8 +27,7 @@ if (!$data) {
     exit;
 }
 
-// 2. (OTOMATIS) Update Status Reservasi menjadi 'Confirmed' (Tanpa Admin)
-// Ini menganggap user telah melihat informasi pembayaran dan melakukan transfer.
+// 2.Update Status Reservasi menjadi 'Confirmed' 
 $update_reservasi = "UPDATE reservasi SET status_reservasi = 'Confirmed' WHERE id_reservasi = '$id_reservasi'";
 mysqli_query($conn, $update_reservasi);
 

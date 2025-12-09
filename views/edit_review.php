@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Pastikan path connection benar. Jika file ini di folder 'views', maka '../actions/' benar.
 include '../actions/connection.php'; 
 
 // 1. Cek Login
@@ -9,10 +8,8 @@ if (!isset($_SESSION['id_user'])) {
     exit;
 }
 
-// 2. Cek ID di URL (misal: edit_review.php?id=5)
-// Jika tidak ada ID di URL, kembalikan ke halaman riwayat
+// 2. Cek ID di URL 
 if (!isset($_GET['id'])) {
-    // PASTIKAN NAMA FILE INI BENAR (sesuaikan dengan nama file riwayat Anda)
     header("Location: riwayat_review.php"); 
     exit;
 }
@@ -20,14 +17,12 @@ if (!isset($_GET['id'])) {
 $id_review_get = $_GET['id'];
 $id_user       = $_SESSION['id_user'];
 
-// 3. PROSES UPDATE (Dijalankan saat tombol Simpan diklik)
+// 3.UPDATE 
 if (isset($_POST['update_review'])) {
-    // Ambil data dari form
-    $id_review_post = $_POST['id_review']; // Ambil dari hidden input (lebih aman)
+    $id_review_post = $_POST['id_review'];
     $rating_baru    = $_POST['rating'];
     $komentar_baru  = mysqli_real_escape_string($conn, $_POST['komentar']);
 
-    // Query Update
     $query_update = "UPDATE review 
                      SET rating = '$rating_baru', komentar = '$komentar_baru' 
                      WHERE id_review = '$id_review_post' AND id_user = '$id_user'";
@@ -44,7 +39,7 @@ if (isset($_POST['update_review'])) {
     }
 }
 
-// 4. AMBIL DATA LAMA (Untuk mengisi form)
+// 4. AMBIL DATA LAMA
 $query_get = "SELECT r.*, k.tipe_kamar 
               FROM review r 
               JOIN kamar k ON r.id_kamar = k.id_kamar 
