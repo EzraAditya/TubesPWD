@@ -8,16 +8,15 @@ if (!isset($_SESSION['id_user'])) {
     exit; 
 }
 
-// Ambil action dari URL, jika tidak ada set string kosong
+// Ambil action dari URL
 $action = isset($_GET['action']) ? $_GET['action'] : '';
-$id_user = $_SESSION['id_user']; // Ambil dari session sekali saja
+$id_user = $_SESSION['id_user']; 
 
 // ================= 1. TAMBAH REVIEW =================
 if ($action == 'tambah') {
-    // Ambil data POST hanya DI DALAM blok ini
     $id_kamar = $_POST['id_kamar'];
     $rating   = $_POST['rating'];
-    $komentar = mysqli_real_escape_string($conn, $_POST['komentar']); // Cegah error jika ada tanda kutip
+    $komentar = mysqli_real_escape_string($conn, $_POST['komentar']);
 
     $query = "INSERT INTO review (id_user, id_kamar, rating, komentar) 
               VALUES ('$id_user', '$id_kamar', '$rating', '$komentar')";
@@ -31,15 +30,13 @@ if ($action == 'tambah') {
 
 // ================= 2. TAMPIL REVIEW =================
 elseif ($action == 'tampil') {
-    // Gunakan GET karena mengambil data
     $id_kamar = $_GET['id_kamar']; 
 
-    // Query Join untuk mengambil nama user
     $query = "SELECT r.*, u.nama 
               FROM review r 
               JOIN user u ON r.id_user = u.id 
               WHERE r.id_kamar = '$id_kamar'
-              ORDER BY r.id_review DESC"; // Urutkan dari yang terbaru
+              ORDER BY r.id_review DESC"; 
 
     $result = mysqli_query($conn, $query);
     $data = [];
@@ -48,23 +45,18 @@ elseif ($action == 'tampil') {
         $data[] = $row;
     }
 
-    // Set header JSON agar frontend membacanya dengan benar
     header('Content-Type: application/json');
     echo json_encode($data);
 }
 
 // ================= 3. EDIT REVIEW =================
 elseif ($action == 'edit') {
-    // Ambil data POST di sini
     $id_review = $_POST['id_review'];
     $rating    = $_POST['rating'];
     $komentar  = mysqli_real_escape_string($conn, $_POST['komentar']);
-
-    // Pastikan WHERE menggunakan id_review (sesuai DB Anda)
     $query = "UPDATE review 
               SET rating='$rating', komentar='$komentar' 
               WHERE id_review='$id_review' AND id_user='$id_user'"; 
-              // Tambahan AND id_user agar user tidak bisa edit punya orang lain
 
     if (mysqli_query($conn, $query)) {
         echo "Review berhasil diupdate";
