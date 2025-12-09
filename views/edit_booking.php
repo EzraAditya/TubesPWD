@@ -10,15 +10,13 @@ if (!isset($_SESSION['id_user'])) {
 
 // Cek apakah ada ID Reservasi di URL
 if (!isset($_GET['id'])) {
-    header("Location: riwayat.php"); // Redirect jika tidak ada ID
+    header("Location: riwayat.php");
     exit;
 }
 
 $id_reservasi = $_GET['id'];
 $id_user = $_SESSION['id_user'];
 
-// Ambil data reservasi gabung dengan tabel kamar dan rincian
-// Kita perlu harga kamar untuk menghitung ulang nanti, dan data tanggal lama
 $query = "SELECT r.*, rr.id_kamar, k.tipe_kamar, k.harga 
           FROM reservasi r 
           JOIN rincianreservasi rr ON r.id_reservasi = rr.id_reservasi 
@@ -28,7 +26,7 @@ $query = "SELECT r.*, rr.id_kamar, k.tipe_kamar, k.harga
 $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($result);
 
-// Jika data tidak ditemukan (atau user mencoba edit punya orang lain)
+// Jika data tidak ditemukan 
 if (!$data) {
     echo "<script>alert('Data tidak ditemukan!'); window.location='riwayat.php';</script>";
     exit;
