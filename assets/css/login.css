@@ -1,76 +1,181 @@
+/* Import Font Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 body {
+    /* Background Gambar */
     background: url('../bg-hotel.jpg') center/cover no-repeat fixed;
+    
+    /* Font Global */
     font-family: 'Poppins', sans-serif;
+    
+    /* RESET */
     margin: 0;
     padding: 0;
+    
+    /* SETUP LAYOUT TENGAH (FLEXBOX) */
+    min-height: 100vh;      /* Tinggi layar penuh */
+    display: flex;          /* Mode Flexbox */
+    flex-direction: column; /* Susunan vertikal (Atas ke Bawah) */
+    justify-content: center;/* Tengah secara Vertikal */
+    align-items: center;    /* Tengah secara Horizontal */
+    position: relative;     /* Agar elemen absolute (logo/footer) terkunci di body */
 }
 
+/* ========== 1. LOGO & JUDUL (DIPERBESAR & DIGESER KE KIRI) ========== */
+.app-logo {
+    position: absolute;     /* Posisi bebas */
+    top: 50px;              /* Jarak dari atap */
+    left: 50%;              /* Titik tengah layar */
+    
+    /* === KUNCI PENGGESERAN === */
+    /* translateX(-50%) membuat elemen tepat di tengah. */
+    /* Kita kurangi nilainya (misal jadi -65%) agar bergeser ke KIRI. */
+    /* Semakin besar angka negatifnya, semakin ke kiri dia bergeser. */
+    transform: translateX(-65%); 
+    
+    display: flex;
+    align-items: center;
+    gap: 15px;              /* Jarak gambar ke teks (TIDAK BERUBAH) */
+    
+    text-decoration: none;
+    z-index: 100;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+/* Gambar Logo */
+.logo-img {
+    height: 120px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+/* Teks Judul */
+.app-logo span {
+    font-family: 'Poppins', sans-serif; 
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: 1px;
+}
+
+/* Efek Hover (Pertahankan posisi geser saat di-hover) */
+.app-logo:hover {
+    /* Pastikan nilai translateX SAMA dengan di atas, lalu tambah scale */
+    transform: translateX(-65%) scale(1.05); 
+    opacity: 0.9;
+}
+
+/* ========== 2. KOTAK LOGIN (SUDAH TENGAH) ========== */
 .auth-container {
     width: 380px;
-    margin: 70px auto;
-    background: rgba(255, 255, 255, 0.92);
-    padding: 30px 35px;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    backdrop-filter: blur(4px);
-    animation: fadeIn 0.4s ease-in-out;
+    margin: 0; /* Margin auto dihapus karena sudah di-handle body flex */
+    
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 35px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.5s ease-out;
+    text-align: left;
 }
 
+/* Judul "Login Akun" */
 h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: 0;
+    margin-bottom: 25px;
     color: #333;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 24px;
 }
 
 label {
     display: block;
     margin: 12px 0 6px;
     font-size: 14px;
-    color: #444;
+    font-weight: 600;
+    color: #555;
 }
 
 input {
     width: 100%;
     padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+    border-radius: 8px;
+    border: 1px solid #ddd;
     font-size: 14px;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
+    transition: 0.2s;
+}
+
+input:focus {
+    border-color: #3a7bd5;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.1);
 }
 
 button {
     width: 100%;
-    margin-top: 20px;
-    padding: 12px;
+    margin-top: 25px;
+    padding: 14px;
     background: #3a7bd5;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     color: white;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
     cursor: pointer;
     transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(58, 123, 213, 0.3);
 }
 
 button:hover {
-    background: #336dc2;
+    background: #2c6cb5;
+    transform: translateY(-2px);
 }
 
 .auth-container p {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #666;
 }
 
 a {
     color: #3a7bd5;
     text-decoration: none;
+    font-weight: 600;
 }
 
 a:hover {
     text-decoration: underline;
 }
 
+/* ========== 3. FOOTER (TENGAH BAWAH) ========== */
+.main-footer {
+    position: absolute;     /* Menempel mutlak */
+    bottom: 15px;           /* Jarak dari bawah */
+    left: 0;
+    width: 100%;            /* Lebar penuh */
+    text-align: center;     /* Teks rata tengah */
+    color: rgba(255, 255, 255, 0.9); 
+    font-size: 13px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+/* Responsif HP */
+@media (max-width: 480px) {
+    .app-logo { top: 30px; }
+    .logo-img { height: 45px; }
+    .app-logo span { font-size: 22px; }
+    .auth-container { width: 90%; padding: 30px 20px; margin-top: 40px; }
+}
+
 @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(10px);}
-    to {opacity: 1; transform: translateY(0);}
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }

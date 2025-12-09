@@ -1,0 +1,60 @@
+/* Container utama galeri */
+.pembungkus-galeri {
+    position: relative; /* Agar tombol bisa menempel di dalam */
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Area Gambar yang bisa discroll */
+.galeri-sederhana {
+    display: flex;
+    overflow-x: auto; 
+    gap: 15px;
+    padding-bottom: 10px;
+    scroll-behavior: smooth; /* Agar gesernya halus */
+}
+
+/* Gambar */
+.galeri-sederhana img {
+    height: 300px;
+    width: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Sembunyikan scrollbar (Chrome, Safari, Opera) */
+.galeri-sederhana::-webkit-scrollbar { 
+    display: none; 
+}
+
+/* Tombol Panah Kiri & Kanan */
+.tombol-geser {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0, 0.5); /* Hitam transparan */
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+.tombol-geser:hover { 
+    background-color: black; 
+}
+
+.kiri { left: 10px; }
+.kanan { right: 10px; }
+
+/* Teks Sapaan */
+.sapaan {
+    font-size: 18px;
+    color: #2c7be5;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

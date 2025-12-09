@@ -20,7 +20,6 @@ function cariGambarUtama($tipe_kamar) {
     }
 }
 
-if (!isset($_SESSION['id_user'])) { header("Location: login.php"); exit; }
 include '../includes/header.php';
 ?>
 

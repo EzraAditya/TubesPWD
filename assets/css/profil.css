@@ -1,82 +1,108 @@
+/* Container Utama */
 .profile-container {
-  margin-top: 20px;
-  padding: 26px;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(16,24,40,0.08);
+    margin-top: 20px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* Judul Halaman */
 .page-title {
-  font-size: 22px;
-  font-weight: 700;
-  color: #0b61d6;
-  margin-bottom: 6px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #0b61d6;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
 }
 
-.page-sub {
-  font-size: 14px;
-  color: #6b7280;
-  margin-bottom: 20px;
+/* Form Input Styles */
+.profile-form label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #4b5563;
+    margin-bottom: 6px;
+    display: block;
 }
 
-.profile-form input,
-.profile-form select {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  background: #f9fafb;
-  margin-bottom: 16px;
-  transition: .15s;
+.profile-form input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    margin-bottom: 18px;
+    transition: 0.2s ease;
+    font-size: 15px;
+    box-sizing: border-box; 
 }
 
 .profile-form input:focus {
-  border-color: #0b61d6;
-  background: #fff;
-  box-shadow: 0 6px 18px rgba(11,97,214,0.09);
+    border-color: #0b61d6;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(11, 97, 214, 0.1);
+    outline: none;
 }
 
+/* Input yang tidak bisa diedit (Email) */
 .disabled-input {
-  background: #eceff3 !important;
-  cursor: not-allowed;
+    background: #f3f4f6 !important;
+    color: #9ca3af;
+    cursor: not-allowed;
+    border-color: #e5e7eb;
 }
 
+/* Tombol-tombol (Layout Flexbox) */
 .button-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 15px;
+    gap: 15px; /* Jarak antar tombol */
 }
 
+/* Tombol Simpan (Biru) */
 .btn-primary {
-  background: #0b61d6;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 10px;
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-  transition: .15s;
+    background: #0b61d6;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    flex: 1; /* Mengisi ruang kosong */
+    font-size: 15px;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(11,97,214,0.18);
+    background: #094aa6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(11, 97, 214, 0.2);
 }
 
-.btn-danger {
-  background: #dc3545;  /* merah */
-  border: none;
-  padding: 12px 18px;
-  border-radius: 10px;
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-  transition: .15s;
+/* Tombol Logout (Merah) */
+.logout {
+    background: #ef4444;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.2s;
+    flex: 1; /* Mengisi ruang kosong */
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
 }
 
-.btn-danger:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(220,53,69,0.25);
-  background: #bb2d3b;
+.logout:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
 }

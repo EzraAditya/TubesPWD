@@ -1,74 +1,62 @@
 <?php
+session_start(); // Pastikan session dimulai
 include '../actions/connection.php';
+
+// Cek Login
 if (!isset($_SESSION['id_user'])) { header("Location: login.php"); exit; }
 
-// LOGIC UPDATE PROFIL LANGSUNG DISINI AGAR SIMPLE
+// --- LOGIKA UPDATE PROFIL ---
 if (isset($_POST['update'])) {
     $nama = $_POST['nama'];
     $telp = $_POST['no_telp'];
-    $tgl = $_POST['tanggal_lahir'];
-    $id = $_SESSION['id_user'];
+    $tgl  = $_POST['tanggal_lahir'];
+    $id   = $_SESSION['id_user'];
     
-    mysqli_query($conn, "UPDATE user SET nama='$nama', no_telp='$telp', tanggal_lahir='$tgl' WHERE id_user='$id'");
-    $_SESSION['nama'] = $nama;
-    echo "<script>alert('Update Berhasil');</script>";
+    // Update Database
+    $query = "UPDATE user SET nama='$nama', no_telp='$telp', tanggal_lahir='$tgl' WHERE id_user='$id'";
+    
+    if(mysqli_query($conn, $query)) {
+        $_SESSION['nama'] = $nama; // Update session nama biar header berubah
+        echo "<script>alert('Profil berhasil diperbarui!'); window.location='profil.php';</script>";
+    } else {
+        echo "<script>alert('Gagal update: " . mysqli_error($conn) . "');</script>";
+    }
 }
 
+// Ambil Data User Terbaru
 $id = $_SESSION['id_user'];
 $d = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE id_user='$id'"));
 
-$pageStyles = '<link rel="stylesheet" href="/assets/css/profil.css">';
+// --- PANGGIL CSS KHUSUS PROFIL ---
+// Perhatikan titik dua (..) agar naik ke folder assets
+$pageStyles = '<link rel="stylesheet" href="../assets/css/profil.css">';
 
 include '../includes/header.php';
-
 ?>
 
 <div class="container profile-container">
     <h2 class="page-title">Edit Profil</h2>
 
-    <form action="" method="post" class="profile-form3">
-        <br>
-        <label>Nama:</label>
-        <input type="text" name="nama" value="<?php echo $d['nama']; ?>" required="required" />
+    <form action="" method="post" class="profile-form">
         
-        <label>Email:</label>
-        <input type="text" value="<?php echo $d['email']; ?>" disabled="disabled" style="background:#eee;" />
+        <label>Nama Lengkap</label>
+        <input type="text" name="nama" value="<?php echo $d['nama']; ?>" required />
         
-        <label>No Telp:</label>
+        <label>Email (Tidak dapat diubah)</label>
+        <input type="text" value="<?php echo $d['email']; ?>" disabled class="disabled-input" />
+        
+        <label>Nomor Telepon</label>
         <input type="text" name="no_telp" value="<?php echo $d['no_telp']; ?>" />
         
-        <label>Tanggal Lahir:</label>
+        <label>Tanggal Lahir</label>
         <input type="date" name="tanggal_lahir" value="<?php echo $d['tanggal_lahir']; ?>" />
         
-        <button type="submit" name="update" class="btn-primary">Simpan Perubahan</button>
-        <a href="../actions/connection.php?logout=true" class="logout">Logout</a>
-        <button type="button" class="btn-danger" onclick="hapusAkun()">Hapus Akun</button>
+        <div class="button-row">
+            <button type="submit" name="update" class="btn-primary">Simpan Perubahan</button>
+            <a href="../actions/connection.php?logout=true" class="logout" onclick="return confirm('Yakin ingin logout?')">Logout</a>
+        </div>
 
     </form>
 </div>
-<script>
-function hapusAkun() {
-    if (!confirm("Yakin ingin menghapus akun Anda? Semua data akan hilang!")) return;
-
-    fetch("../actions/backend_user/user/delete_user.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            id_user: <?php echo $_SESSION['id_user']; ?>
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        alert(data.message);
-
-        if (data.status) {
-            window.location = "register.php"; // redirect setelah sukses hapus
-        }
-    })
-    .catch(err => {
-        alert("Terjadi kesalahan pada server");
-    });
-}
-</script>
 
 <?php include '../includes/footer.php'; ?>
