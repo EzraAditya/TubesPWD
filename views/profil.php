@@ -31,6 +31,13 @@ $d = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE id_user='$
 // Perhatikan titik dua (..) agar naik ke folder assets
 $pageStyles = '<link rel="stylesheet" href="../assets/css/profil.css">';
 
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
+
 include '../includes/header.php';
 ?>
 
@@ -51,10 +58,9 @@ include '../includes/header.php';
         <label>Tanggal Lahir</label>
         <input type="date" name="tanggal_lahir" value="<?php echo $d['tanggal_lahir']; ?>" />
         
-        <div class="button-row">
-            <button type="submit" name="update" class="btn-primary">Simpan Perubahan</button>
-            <a href="../actions/connection.php?logout=true" class="logout" onclick="return confirm('Yakin ingin logout?')">Logout</a>
-        </div>
+        <button type="submit" name="update" class="btn-primary">Simpan Perubahan</button>
+        <button type="submit" name="logout" class="btn-danger" onclick="return confirm('Yakin ingin logout?')">Logout</button>
+        <button type="button" class="btn-danger" onclick="hapusAkun()">Hapus Akun</button>
 
     </form>
 </div>
