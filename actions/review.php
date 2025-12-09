@@ -75,7 +75,6 @@ elseif ($action == 'edit') {
 
 // ================= 4. HAPUS REVIEW =================
 elseif ($action == 'hapus') {
-    // Jika via AJAX/Form POST
     $id_review = $_GET['id'];
 
     $query = "DELETE FROM review WHERE id_review='$id_review' AND id_user='$id_user'";

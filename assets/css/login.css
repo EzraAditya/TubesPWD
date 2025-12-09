@@ -153,11 +153,10 @@ a:hover {
 
 /* ========== 3. FOOTER (TENGAH BAWAH) ========== */
 .main-footer {
-    position: absolute;     /* Menempel mutlak */
-    bottom: 15px;           /* Jarak dari bawah */
-    left: 0;
-    width: 100%;            /* Lebar penuh */
-    text-align: center;     /* Teks rata tengah */
+    position: absolute;    
+    bottom: 15px;           
+    width: 100%;            
+    text-align: center;     
     color: rgba(255, 255, 255, 0.9); 
     font-size: 13px;
     text-shadow: 0 1px 3px rgba(0,0,0,0.8);
