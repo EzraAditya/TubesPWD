@@ -1,76 +1,123 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 body {
-    background: url('../bg-hotel.jpg') center/cover no-repeat fixed;
+    /* Background Gambar (Disamakan dengan Login) */
+    background: url('../image/bg-hotel.jpg') center/cover no-repeat fixed;
     font-family: 'Poppins', sans-serif;
+    
+    /* RESET */
     margin: 0;
     padding: 0;
+    
+    /* SETUP LAYOUT (Agar Footer Nempel Bawah & Form Tengah) */
+    min-height: 100vh;      /* Tinggi minimal setinggi layar */
+    display: flex;          /* Mode Flexbox */
+    flex-direction: column; /* Susunan Atas ke Bawah */
+    align-items: center;    /* Tengah secara Horizontal */
 }
 
+/* CONTAINER FORM */
 .auth-container {
-    width: 420px; 
-    margin: 60px auto;
-    background: rgba(255, 255, 255, 0.92);
+    width: 400px;
+    background: rgba(255, 255, 255, 0.95); /* Putih transparan */
     padding: 30px 40px;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    backdrop-filter: blur(4px);
-    animation: fadeIn 0.4s ease-in-out;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    backdrop-filter: blur(5px);
+    
+    /* KUNCI: Margin Auto akan mendorong container ke tengah vertikal,
+       dan mendorong footer ke bawah */
+    margin: auto; 
+    
+    /* Jarak aman untuk HP */
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 20px;
     color: #333;
-    font-weight: 600;
+    margin-bottom: 25px;
+    font-weight: 700;
 }
 
 label {
     display: block;
-    margin: 10px 0 6px;
+    margin-bottom: 5px;
     font-size: 14px;
-    color: #444;
+    font-weight: 600;
+    color: #555;
 }
 
 input {
     width: 100%;
     padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    box-sizing: border-box; 
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box; /* Agar padding tidak melebarkan input */
+    font-family: 'Poppins', sans-serif;
+}
+
+input:focus {
+    border-color: #3a7bd5;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.1);
 }
 
 button {
     width: 100%;
-    margin-top: 20px;
-    padding: 12px;
+    padding: 14px;
     background: #3a7bd5;
-    border: none;
-    border-radius: 10px;
     color: white;
-    font-size: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
+    margin-top: 10px;
 }
 
 button:hover {
-    background: #336dc2;
+    background: #2c6cb5;
 }
 
 .auth-container p {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
 }
 
 a {
     color: #3a7bd5;
     text-decoration: none;
+    font-weight: 600;
 }
 
 a:hover {
     text-decoration: underline;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(10px);}
-    to {opacity: 1; transform: translateY(0);}
+/* SETUP FOOTER */
+.main-footer {
+    width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    padding: 20px 0;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    
+    /* Pastikan footer tidak menyusut */
+    flex-shrink: 0; 
+}
+
+/* RESPONSIF HP */
+@media (max-width: 480px) {
+    .auth-container {
+        width: 90%;
+        padding: 25px 20px;
+    }
 }

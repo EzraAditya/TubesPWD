@@ -1,21 +1,17 @@
 <?php
-session_start();
+if (!isset($_SESSION)) { session_start(); }
+
 include '../actions/connection.php';
 
 // Fungsi untuk mencari gambar pertama yang cocok
 function cariGambarUtama($tipe_kamar) {
-    // Bersihkan nama kamar (huruf kecil semua) contoh: "Single Bed" jadi "single bed"
     $keyword = strtolower($tipe_kamar);
     
-    // Cari semua file .jpeg yang mengandung nama kamar di folder image
-    // Path menggunakan "../" karena kita ada di folder views
     $files = glob("../assets/image/" . $keyword . "*.jpeg");
     
-    // Jika ketemu minimal 1, ambil yang pertama
     if (count($files) > 0) {
         return $files[0];
     } else {
-        // Gambar cadangan jika tidak ada yang cocok
         return "https://via.placeholder.com/500x300?text=No+Image"; 
     }
 }
@@ -31,7 +27,6 @@ include '../includes/header.php';
         <?php
         $query = mysqli_query($conn, "SELECT * FROM kamar");
         while($kamar = mysqli_fetch_assoc($query)) {
-            // Panggil fungsi pencari gambar otomatis
             $gambarUtama = cariGambarUtama($kamar['tipe_kamar']);
         ?>
         
@@ -43,11 +38,11 @@ include '../includes/header.php';
                 <div class="room-price">Rp <?php echo number_format($kamar['harga']); ?> / malam</div>
                 
                 <p class="room-desc-short">
-                    Kapasitas: <?php echo $kamar['kapasitas']; ?> Orang<br>
+                    Kapasitas: <?php echo $kamar['kapasitas']; ?> Orang<br />
                     <?php echo substr($kamar['fasilitas'], 0, 50); ?>...
                 </p>
                 
-                <a href="detail_kamar.php?id=<?php echo $kamar['id_kamar']; ?>" class="btn-detail">Lihat Detail & Foto</a>
+                <a href="detail_kamar.php?id=<?php echo $kamar['id_kamar']; ?>" class="btn-detail">Lihat Detail &amp; Foto</a>
             </div>
         </div>
         

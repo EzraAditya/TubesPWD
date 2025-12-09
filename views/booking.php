@@ -1,15 +1,26 @@
 <?php
+if (!isset($_SESSION)) { session_start(); }
+
 include '../actions/connection.php';
+// reservation.php dipanggil untuk memproses logika booking
 include '../actions/reservation.php';
 
+// Cek Login
 if (!isset($_SESSION['id_user'])) { header("Location: login.php"); exit; }
 
+// Cek apakah ID Kamar ada di URL
+if (!isset($_GET['id'])) { header("Location: dashboard.php"); exit; }
+
 $id_kamar = $_GET['id'];
-$k = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kamar WHERE id_kamar='$id_kamar'"));
+$query = mysqli_query($conn, "SELECT * FROM kamar WHERE id_kamar='$id_kamar'");
+$k = mysqli_fetch_assoc($query);
+
+// Jika kamar tidak valid
+if (!$k) { header("Location: dashboard.php"); exit; }
 
 include '../includes/header.php';
-
 ?>
+
 <div class="container">
     <h2>Booking: <?php echo $k['tipe_kamar']; ?></h2>
     <p>Harga: Rp <?php echo number_format($k['harga']); ?> /malam</p>
@@ -32,4 +43,5 @@ include '../includes/header.php';
         </div>
     </form>
 </div>
+
 <?php include '../includes/footer.php'; ?>

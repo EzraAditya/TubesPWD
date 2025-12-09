@@ -2,16 +2,14 @@
 if (!isset($_SESSION)) { session_start(); }
 ?>
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" xmlns="http://www.w3.org/1999/xhtml" xml:lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistem Penginapan</title>
 
-    <!-- CSS GLOBAL -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css" />
 
-    <!-- CSS HALAMAN -->
     <?php if (isset($pageStyles)) echo $pageStyles; ?>
 </head>
 
@@ -20,16 +18,14 @@ if (!isset($_SESSION)) { session_start(); }
 <header class="header">
     <div class="header-inner">
 
-        <!-- LOGO -->
         <div class="header-logo">
             <span class="logo-icon">
-                <img src="../assets/image/logo.png" alt="Logo" class="img-logo-header">
+                <img src="../assets/image/logo.png" alt="Logo" class="img-logo-header" />
             </span>
             <span class="logo-text">NginapKan</span>
         </div>
 
-        <!-- MENU -->
-       <nav class="header-nav">
+        <nav class="header-nav">
             <a href="dashboard.php">Home</a>
             <a href="daftar_kamar.php">Daftar Kamar</a>
 

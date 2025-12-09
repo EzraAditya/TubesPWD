@@ -1,7 +1,7 @@
 </main>
 
 <footer class="main-footer">
-    <p>© 2024 Sistem Penginapan. XHTML Compliant.</p>
+    <p>© 2025 Sistem Penginapan NginapKan. XHTML Compliant.</p>
 </footer>
 
 </body>
