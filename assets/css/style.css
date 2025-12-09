@@ -143,15 +143,14 @@ body {
     margin: 0;
     padding: 0;
     
-    /* Setup Flexbox agar footer turun ke bawah */
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Tinggi minimal setinggi layar */
+    min-height: 100vh; 
 }
 
 /* Header tetap di atas */
 .header {
-    flex-shrink: 0; /* Header tidak boleh menyusut */
+    flex-shrink: 0; 
 }
 
 /* Konten Utama (Mengisi ruang kosong) */
@@ -159,18 +158,17 @@ body {
     width: 90%;
     margin: 30px auto;
     
-    /* Ini kuncinya: content akan memanjang mengisi sisa ruang */
     flex: 1 0 auto; 
 }
 
-/* Footer (Menempel di bawah) */
+/* Footer */
 .main-footer {
-    flex-shrink: 0; /* Footer tidak boleh menyusut */
+    flex-shrink: 0; 
     background: #2c3e50;
     color: white;
     text-align: center;
     padding: 15px 0;
-    margin-top: auto; /* Dorong footer ke paling bawah */
+    margin-top: auto;
     width: 100%;
 } 
 
@@ -286,47 +284,45 @@ body {
     margin-top: 40px;
 }
 
-/* ========== ROOM CARD & GRID (PERBAIKAN) ========== */
+/* ========== ROOM CARD & GRID ========== */
 
-/* Container Utama: Membuat layout kotak-kotak (Grid) */
 .room-grid {
     display: grid;
-    /* Ini kuncinya: Membagi kolom otomatis dengan lebar minimal 300px */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 30px; /* Jarak antar kotak */
+    gap: 30px;
     margin-top: 20px;
 }
 
-/* Kotak Per Kamar (Card) */
+/* Kotak Per Kamar */
 .room-card {
     background: #fff;
-    border: 1px solid #e0e0e0; /* Garis pinggir kotak */
-    border-radius: 12px;       /* Sudut membulat */
-    overflow: hidden;          /* Agar gambar tidak keluar dari kotak */
+    border: 1px solid #e0e0e0; 
+    border-radius: 12px;       
+    overflow: hidden;          
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;             /* Agar isi bisa ditata rapi */
-    flex-direction: column;    /* Susunan vertikal */
+    display: flex;             
+    flex-direction: column;    
 }
 
 /* Efek saat mouse diarahkan ke kotak */
 .room-card:hover {
-    transform: translateY(-5px); /* Kotak naik sedikit */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Bayangan lebih tebal */
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
     border-color: #2c7be5;
 }
 
 /* Pengaturan Gambar Agar Tidak Kegedean */
 .room-img {
-    width: 100%;        /* Lebar mengikuti kotak */
-    height: 220px;      /* TINGGI DIPAKSA TETAP (Agar seragam) */
-    object-fit: cover;  /* Gambar dipotong rapi agar tidak gepeng */
+    width: 100%;       
+    height: 220px;      
+    object-fit: cover; 
     border-bottom: 1px solid #eee;
 }
 
 /* Area Teks di dalam Kotak */
 .room-content {
     padding: 20px;
-    flex-grow: 1;      /* Mengisi sisa ruang */
+    flex-grow: 1;      
     display: flex;
     flex-direction: column;
 }
@@ -342,7 +338,7 @@ body {
 /* Harga */
 .room-price {
     font-size: 16px;
-    color: #2c7be5; /* Warna biru */
+    color: #2c7be5; 
     font-weight: 600;
     margin-bottom: 15px;
 }
@@ -353,7 +349,7 @@ body {
     color: #666;
     line-height: 1.6;
     margin-bottom: 20px;
-    flex-grow: 1; /* Mendorong tombol ke bawah */
+    flex-grow: 1; 
 }
 
 /* Tombol Detail */
@@ -399,9 +395,9 @@ body {
 
 /* Kotak Pembungkus Setiap Foto Kecil */
 .gallery-item {
-    flex: 0 0 auto;         /* KUNCI: Agar kotak tidak mengecil/gepeng */
-    width: 250px;           /* Lebar tetap untuk setiap foto galeri */
-    height: 160px;          /* Tinggi tetap */
+    flex: 0 0 auto;         
+    width: 250px;          
+    height: 160px;         
     border-radius: 10px;
     overflow: hidden;
     border: 2px solid transparent;
@@ -420,10 +416,9 @@ body {
 .gallery-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;      /* Memotong gambar agar pas di kotak (tidak gepeng) */
+    object-fit: cover;     
 }
 
-/* Sembunyikan Scrollbar tapi tetap bisa scroll (Opsional) */
 .gallery-scroll::-webkit-scrollbar {
     height: 8px;
 }
@@ -442,13 +437,13 @@ body {
 .header-logo {
     display: flex;
     align-items: center;
-    gap: 10px; /* Jarak antara logo dan teks */
+    gap: 10px; 
 }
 
 /* Mengatur ukuran gambar logo KHUSUS di header */
 .img-logo-header {
-    height: 80px;           /* Tinggi pas untuk navbar */
-    width: auto;            /* Lebar menyesuaikan */
+    height: 80px;          
+    width: auto;           
     object-fit: contain;
     vertical-align: middle;
 }

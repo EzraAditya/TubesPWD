@@ -12,30 +12,27 @@ body {
     margin: 0;
     padding: 0;
     
-    /* SETUP LAYOUT TENGAH (FLEXBOX) */
-    min-height: 100vh;      /* Tinggi layar penuh */
-    display: flex;          /* Mode Flexbox */
-    flex-direction: column; /* Susunan vertikal (Atas ke Bawah) */
-    justify-content: center;/* Tengah secara Vertikal */
-    align-items: center;    /* Tengah secara Horizontal */
-    position: relative;     /* Agar elemen absolute (logo/footer) terkunci di body */
+    /* SETUP LAYOUT TENGAH */
+    min-height: 100vh;     
+    display: flex;          
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;    
+    position: relative;     
 }
 
-/* ========== 1. LOGO & JUDUL (DIPERBESAR & DIGESER KE KIRI) ========== */
+/* ========== 1. LOGO & JUDUL  ========== */
 .app-logo {
-    position: absolute;     /* Posisi bebas */
-    top: 50px;              /* Jarak dari atap */
-    left: 50%;              /* Titik tengah layar */
+    position: absolute;     
+    top: 50px;              
+    left: 50%;             
     
     /* === KUNCI PENGGESERAN === */
-    /* translateX(-50%) membuat elemen tepat di tengah. */
-    /* Kita kurangi nilainya (misal jadi -65%) agar bergeser ke KIRI. */
-    /* Semakin besar angka negatifnya, semakin ke kiri dia bergeser. */
     transform: translateX(-65%); 
     
     display: flex;
     align-items: center;
-    gap: 15px;              /* Jarak gambar ke teks (TIDAK BERUBAH) */
+    gap: 15px;            
     
     text-decoration: none;
     z-index: 100;
@@ -60,17 +57,16 @@ body {
     letter-spacing: 1px;
 }
 
-/* Efek Hover (Pertahankan posisi geser saat di-hover) */
+/* Efek Hover */
 .app-logo:hover {
-    /* Pastikan nilai translateX SAMA dengan di atas, lalu tambah scale */
     transform: translateX(-65%) scale(1.05); 
     opacity: 0.9;
 }
 
-/* ========== 2. KOTAK LOGIN (SUDAH TENGAH) ========== */
+/* ========== 2. KOTAK LOGIN ========== */
 .auth-container {
     width: 380px;
-    margin: 0; /* Margin auto dihapus karena sudah di-handle body flex */
+    margin: 0; 
     
     background: rgba(255, 255, 255, 0.95);
     padding: 40px 35px;

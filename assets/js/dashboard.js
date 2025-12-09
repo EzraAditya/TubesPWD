@@ -1,4 +1,4 @@
-// --- FUNGSI GESER (Dipanggil oleh Onclick di HTML) ---
+// --- FUNGSI GESER  ---
 function geserKanan() {
     var galeri = document.getElementById('kotakGambar');
     if (galeri) {
@@ -13,7 +13,7 @@ function geserKiri() {
     }
 }
 
-// --- FUNGSI SAPAAN DIGANTI MENJADI "Selamat Datang!" ---
+// --- FUNGSI SAPAAN " ---
 document.addEventListener("DOMContentLoaded", function() {
     var elemenSapaan = document.getElementById('teksSapaan');
     if (elemenSapaan) {

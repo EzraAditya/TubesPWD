@@ -62,7 +62,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 15px;
-    gap: 15px; /* Jarak antar tombol */
+    gap: 15px; 
 }
 
 /* Tombol Simpan (Biru) */
@@ -75,7 +75,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s;
-    flex: 1; /* Mengisi ruang kosong */
+    flex: 1; 
     font-size: 15px;
 }
 
@@ -95,7 +95,7 @@
     font-weight: 600;
     text-align: center;
     transition: 0.2s;
-    flex: 1; /* Mengisi ruang kosong */
+    flex: 1; 
     border: none;
     font-size: 15px;
     cursor: pointer;
